@@ -39,8 +39,37 @@ $ python install -r requirements.txt
 }
 ```
 
-- /add-task (POST): To add a task. Payload = task, description
-- /add-worker (POST): To add a worker. Payload = worker, age, phone
+- /add-task (POST): To add a task. Payload:
+
+```json
+{
+  "task": "Test Task",
+  "description": "Test Description"
+}
+```
+
+- /add-worker (POST): To add a worker. Payload:
+
+```json
+{
+  "worker": "Test Worker",
+  "age": 10,
+  "phone": 1234567890
+}
+```
+
 - /assets/all (GET): To fetch all assets.
-- /allocate-task/ (POST): To allocate task to a particular worker. Payload = assetId, taskId, workerId, timeOfAllocation, taskToBePerformedBy
+- /allocate-task/ (POST): To allocate task to a particular worker. Payload:
+
+```json
+{
+  "assetId": 1,
+  "taskId": 2,
+  "workerId": 5,
+  "timeOfAllocation": "2019-06-28T14:45:15",
+  "taskToBePerfomedBy": "2019-06-30T14:45:15"
+  "
+}
+```
+
 - /get-tasks-for-worker/<workerId> (GET): To fetch task assigned to a worker with particular worker id.
