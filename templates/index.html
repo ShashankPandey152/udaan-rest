@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TEST API</title>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h3>Enter asset</h3>
+    <input type="text" id="a" placeholder="Enter asset">
+    <input type="text" id="adesc" placeholder="Enter asset description">
+    <button type="button" id="asset">Submit Asset</button>
+
+    <br><br>
+
+    <h3>Enter Task</h3>
+    <input type="text" id="t" placeholder="Enter task">
+    <input type="text" id="tdesc" placeholder="Enter task description">
+    <button type="button" id="task">Submit Task</button>
+
+    <br><br>
+
+    <h3>Enter Worker</h3>
+    <input type="text" id="w" placeholder="Enter worker">
+    <input type="number" id="age" placeholder="Enter age">
+    <input type="number" id="phone" placeholder="Enter number">
+    <button type="button" id="worker">Submit Worker</button>
+
+    <br><br>
+
+    <h3>Get All Assets</h3>
+    <button type="button" id="allassets">Get All Assets</button>
+
+    <p id="details"></p>
+
+    <br><br>
+
+    <h3>Enter Worker</h3>
+    <input type="text" id="aid" placeholder="Enter asset id">
+    <input type="text" id="tid" placeholder="Enter task id">
+    <input type="text" id="wid" placeholder="Enter worker id">
+    <input type="text" id="toa" placeholder="Enter allocation time">
+    <input type="text" id="etc" placeholder="Enter completion time">
+    <button type="button" id="workassign">Allocate Task</button>
+
+    <br><br>
+
+    <h3>Get task for worker</h3>
+    <input type="text" id="workid" placeholder="Enter worker id">
+    <button type="button" id="gettask">Get Task for Worker</button>
+
+    <p id="workDetails"></p>
+
+    <script type="text/javascript">
+
+        $("#asset").click(function() {
+          var asset = $("#a").val();
+          var assetDesc = $("#adesc").val();
+
+          if(asset && assetDesc) {
+            $.ajax({
+                url: "/add-asset",
+                type: "post",
+                dataType: "json",
+                data: {"asset": asset, "description": assetDesc},
+                success: function(result) {
+                  $("#a").val('');
+                  $("#adesc").val('');
+                  alert(result.status);
+                }
+            });
+          } else {
+            alert("Complete the form!");
+          }
+        });
+
+        $("#task").click(function() {
+          var task = $("#t").val();
+          var taskDesc = $("#tdesc").val();
+
+          if(task && taskDesc) {
+            $.ajax({
+                url: "/add-task",
+                type: "post",
+                dataType: "json",
+                data: {"task": task, "description": taskDesc},
+                success: function(result) {
+                  $("#t").val('');
+                  $("#tdesc").val('');
+                  alert(result.status);
+                }
+            });
+          } else {
+            alert("Complete the form!");
+          }
+        });
+
+        $("#worker").click(function() {
+          var worker = $("#w").val();
+          var age = $("#age").val();
+          var phone = $("#phone").val();
+
+          if(worker && age && phone) {
+            $.ajax({
+                url: "/add-worker",
+                type: "post",
+                dataType: "json",
+                data: {"worker": worker, "age": age, "phone": phone},
+                success: function(result) {
+                  $("#w").val('');
+                  $("#age").val('');
+                  $("#phone").val('');
+                  alert(result.status);
+                }
+            });
+          } else {
+            alert("Complete the form!");
+          }
+        });
+
+        $("#allassets").click(function() {
+          $.ajax({
+              url: "/assets/all",
+              type: "get",
+              dataType: "json",
+              success: function(result) {
+                var data = result;
+                var output = "<ul>";
+                for (var i in data)
+                {
+                     var id = data[i].id;
+                     var name = data[i].name;
+                     var description = data[i].description;
+
+                     output += "<li>Id: " + id + "</li>";
+                     output += "<ul><li>Name: " + name + "</li><li>Description: " + description + "</li></ul>";
+                }
+                output += "</ul>";
+                $("#details").html(output);
+              }
+          });
+        });
+
+        $("#workassign").click(function() {
+          var aid = $("#aid").val();
+          var tid = $("#tid").val();
+          var wid = $("#wid").val();
+          var toa = $("#toa").val();
+          var etc = $("#etc").val();
+
+          if(aid && tid && wid && toa && etc) {
+            $.ajax({
+                url: "/allocate-task/",
+                type: "post",
+                dataType: "json",
+                data: {"assetId": aid, "taskId": tid, "workerId": wid, "timeOfAllocation": toa, "taskToBePerformedBy": etc},
+                success: function(result) {
+                  $("#aid").val('');
+                  $("#tid").val('');
+                  $("#wid").val('');
+                  $("#toa").val('');
+                  $("#etc").val('');
+                  alert(result.status);
+                }
+            });
+          } else {
+            alert("Complete the form!");
+          }
+        });
+
+        $("#gettask").click(function() {
+          var worker = $("#workid").val();
+
+          if(worker) {
+            $.ajax({
+                url: "/get-tasks-for-worker/" + worker,
+                type: "get",
+                dataType: "json",
+                success: function(result) {
+                  $("#workid").val('');
+                  var output = "<ul>";
+                  data = result;
+                  for (var i in data)
+                  {
+                       var assetId = data[i].assetId;
+                       var taskId = data[i].taskId;
+                       var task = data[i].task;
+                       var taskDescription = data[i].taskDescription;
+                       var workerId = data[i].workerId;
+                       var taskToBePerformedBy = data[i].taskToBePerformedBy;
+                       var timeOfAllocation = data[i].timeOfAllocation;
+
+
+                       output += "<li>Worker Id: " + workerId + "</li>";
+                       output += "<ul><li>Asset ID: " + assetId + "</li><li>Task ID: " + taskId + "</li>";
+                       output += "<li>Task: " + task + "</li><li>Task Description: " + taskDescription + "</li>";
+                       output += "<li>Completion Date: " + taskToBePerformedBy + "</li><li>Allocation Date: " + timeOfAllocation + "</li></ul>";
+                  }
+                  output += "</ul>";
+                  $("#workDetails").html(output);
+                }
+            });
+          } else {
+            alert("Complete the form!");
+          }
+        });
+
+    </script>
+
+  </body>
+</html>
