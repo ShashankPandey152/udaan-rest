@@ -30,8 +30,15 @@ $ python install -r requirements.txt
 
 **Endpoints**
 
-- /add-asset (POST): To add an asset. 
-<u>Payload</u>
+- /add-asset (POST): To add an asset. Payload:
+
+```json
+{
+  "asset": "Test Asset",
+  "description": "Test Description"
+}
+```
+
 - /add-task (POST): To add a task. Payload = task, description
 - /add-worker (POST): To add a worker. Payload = worker, age, phone
 - /assets/all (GET): To fetch all assets.
