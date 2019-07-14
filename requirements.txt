@@ -40,7 +40,6 @@ ConfigArgParse==0.13.0
 conllu==0.11
 contextlib2==0.5.5
 cookies==2.2.1
-cryptography==2.2.2
 cssselect2==0.2.1
 cycler==0.10.0
 cymem==1.31.2
@@ -68,7 +67,6 @@ Flask-Cors==3.0.3
 Flask-JWT==0.3.2
 Flask-RESTful==0.3.6
 Flask-SocketIO==3.0.2
-Flask-SQLAlchemy==2.3.2
 fpdf==1.7.2
 ftfy==5.5.0
 future==0.17.1
@@ -103,7 +101,6 @@ isort==4.3.4
 itsdangerous==0.24
 jdcal==1.4
 jedi==0.12.0
-Jinja2==2.10
 jmespath==0.9.3
 joblib==0.12.5
 Js2Py==0.59
@@ -184,8 +181,6 @@ pybeep==0.0.4
 pycodestyle==2.4.0
 pycosat==0.6.3
 pycparser==2.18
-pycrypto==2.6.1
-pycryptodome==3.6.6
 pycurl==7.43.0.1
 pydub==0.22.1
 pyflakes==1.6.0
@@ -227,7 +222,6 @@ python-twitter==3.4.2
 pytz==2017.3
 PyVirtualDisplay==0.2.1
 PyWavelets==0.5.2
-PyYAML==3.12
 pyzmq==17.0.0
 QtAwesome==0.4.4
 qtconsole==4.3.1
@@ -237,7 +231,6 @@ reportlab==3.5.13
 requests==2.20.0
 requests-oauthlib==1.0.0
 responses==0.9.0
-rope==0.10.7
 rsa==3.4.2
 ruamel-yaml==0.15.35
 s3transfer==0.1.13
@@ -257,7 +250,6 @@ SpeechRecognition==3.8.1
 Sphinx==1.7.4
 sphinxcontrib-websupport==1.0.1
 spyder==3.2.8
-SQLAlchemy==1.2.7
 sqlparse==0.2.4
 sshtunnel==0.1.4
 statsmodels==0.9.0
@@ -283,7 +275,6 @@ ujson==1.35
 unicodecsv==0.14.1
 Unidecode==1.0.22
 uritemplate==3.0.0
-urllib3==1.22
 user-agents==1.1.0
 utils==0.9.0
 visvis==1.11.1
