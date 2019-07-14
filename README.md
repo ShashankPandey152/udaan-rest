@@ -1,8 +1,5 @@
 # UDAAN REST API
 
-![Logo](images/my-logo.png?style=centerme)
-
-img[src$="centerme"] {
-  display:block;
-  margin: 0 auto;
-}
+<p align="center">
+  <img width="460" height="300" src="images/my-logo.png">
+</p>
