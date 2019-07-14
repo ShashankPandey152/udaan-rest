@@ -27,3 +27,12 @@ $ python app.py
 ```
 $ python install -r requirements.txt
 ```
+
+**Endpoints**
+
+- /add-asset (POST): To add an asset. Payload = asset, description
+- /add-task (POST): To add a task. Payload = task, description
+- /add-worker (POST): To add a worker. Payload = worker, age, phone
+- /assets/all (GET): To fetch all assets.
+- /allocate-task/ (POST): To allocate task to a particular worker. Payload = assetId, taskId, workerId, timeOfAllocation, taskToBePerformedBy
+- /get-tasks-for-worker/<workerId> (GET): To fetch task assigned to a worker with particular worker id.
